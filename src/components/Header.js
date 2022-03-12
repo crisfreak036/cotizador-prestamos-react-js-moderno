@@ -21,4 +21,11 @@ function Header({titulo, descripcion}) {
     )
 }
 
+// const Header = ({ titulo, descripcion }) => ( 
+//     <Fragment>
+//         <h1>{ titulo }</h1>
+//         <p>{ descripcion }</p>
+//     </Fragment>
+// );
+
 export default Header;
