@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { calculateFee } from '../helper';
 
 const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
 
@@ -12,7 +13,7 @@ const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
         saveDeadLine(parseInt(e.target.value));
     }
 
-    const calculatefee = (e) => {
+    const validateInfo = (e) => {
         e.preventDefault();
         // console.log("Calculando Cuota");
 
@@ -21,10 +22,14 @@ const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
             saveErrorState(true);
             return;
         }
-        saveErrorState(false)
+        saveErrorState(false);
 
         // Calculo de la cuota
-
+        const [interest, monthlyFee] = calculateFee( loan, deadLineValue );
+        console.log( ` La Cantidad Solicitada es: ${loan}` );
+        console.log( ` A pagar en: ${deadLineValue} Meses` );
+        console.log( ` Su pago mensual es de: ${monthlyFee}` );
+        console.log( ` Total a Pagar: ${loan + interest}` );
     
         // Limpiar los inputs
     }
@@ -36,7 +41,7 @@ const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
         <Fragment>
             <div className='container'>
                 <form 
-                    onSubmit={ calculatefee }>
+                    onSubmit={ validateInfo }>
                     <div className='row'>
                         <div>
                             <label htmlFor="loan-amount">
@@ -63,7 +68,6 @@ const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
                                     <option value="">Seleccionar</option>
                                     <option value="3">3 Meses</option>
                                     <option value="6">6 Meses</option>
-                                    <option value="9">9 Meses</option>
                                     <option value="12">12 Meses</option>
                                     <option value="24">24 Meses</option>
                             </select>
