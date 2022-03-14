@@ -55,7 +55,7 @@ export function calculateFee( loan, deadLineValue ) {
     let interest = interestLoan + interestDeadLineValue;
 
     // Calculo de la cuota mensual
-    let monthlyFee = (loan + interest)/deadLineValue;
+    let monthlyFee = ((loan + interest)/deadLineValue).toFixed(2);
 
     return [interest, monthlyFee];
 }
