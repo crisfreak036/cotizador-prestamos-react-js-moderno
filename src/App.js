@@ -5,7 +5,7 @@ import Form from "./components/Form"
 function App() {
 
       // Definir el State
-      const [loan, saveLoad] = useState(0);
+      const [loan, saveLoan] = useState(0);
       const [deadLineValue, saveDeadLine] = useState("");
       const [totalPay, saveTotalPay] = useState(0);
       const [monthlyPay, saveMonthlyPay] = useState(0);
@@ -18,7 +18,7 @@ function App() {
       />
       <Form
         loan={loan}
-        saveLoad={saveLoad}
+        saveLoan={saveLoan}
         deadLineValue={deadLineValue}
         saveDeadLine={saveDeadLine}
         totalPay={totalPay}
