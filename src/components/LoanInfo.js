@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React from 'react';
 
 const LoanInfo = (props) => {
     const { loan, deadLineValue, monthlyPay, totalPay } = props;
