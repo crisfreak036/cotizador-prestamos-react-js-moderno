@@ -2,15 +2,17 @@ import React, { useState, Fragment } from 'react';
 import LoanInfo from './LoanInfo';
 import Message from './Message';
 import { calculateFee } from '../helper';
+import Spinner from './Spinner';
 
 const Form = ( props ) => {
 
-    const {loan, saveLoad, deadLineValue, saveDeadLine, totalPay, saveTotalPay, monthlyPay, saveMonthlyPay} = props;
+    const {loan, saveLoan, deadLineValue, saveDeadLine, totalPay, saveTotalPay, monthlyPay, saveMonthlyPay} = props;
 
     const [errorState, saveErrorState ] = useState(false);
+    const [loading, saveLoadingState ] = useState(false);
 
     const readLoan = (e) => {
-        saveLoad(parseInt(e.target.value));
+        saveLoan(parseInt(e.target.value));
     }
 
     const readDeadLine = (e) => {
@@ -23,21 +25,35 @@ const Form = ( props ) => {
 
         // Validación de los datos
         if( loan === 0 || deadLineValue === "" || isNaN(deadLineValue) || isNaN(loan) ) {
+            // Muestra un mensaje de error
             saveErrorState(true);
             return;
         }
+        // Quita el mensaje de error
         saveErrorState(false);
 
-        // Calculo de la cuota
-        const [interest, monthlyFee] = calculateFee( loan, deadLineValue );
-        saveTotalPay(( loan + interest ));
-        saveMonthlyPay(monthlyFee);
+        // Muestra el Spinner
+        saveLoadingState(true);
+
+        // Luego de 2 segundos se realiza el calculo
+        setTimeout(() => {
+            // Calculo de la cuota
+            const [interest, monthlyFee] = calculateFee( loan, deadLineValue );
+            saveTotalPay(( loan + interest ));
+            saveMonthlyPay(monthlyFee);
+
+            // Quita el Spinner
+            saveLoadingState(false)
+        }, 2000);
+
     }
 
     // Carga condicional de componentes
     let variableComponent;
 
-    if(totalPay === 0) {
+    if(loading){
+        variableComponent = <Spinner/>
+    } else if(totalPay === 0) {
         variableComponent = <Message/>;
     } else {
         variableComponent = <LoanInfo 
