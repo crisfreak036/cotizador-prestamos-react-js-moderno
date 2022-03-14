@@ -7,6 +7,8 @@ function App() {
       // Definir el State
       const [loan, saveLoad] = useState(0);
       const [deadLineValue, saveDeadLine] = useState("");
+      const [totalPay, saveTotalPay] = useState(0);
+      const [monthlyPay, saveMonthlyPay] = useState(0);
 
   return (
     <Fragment>
@@ -19,7 +21,10 @@ function App() {
         saveLoad={saveLoad}
         deadLineValue={deadLineValue}
         saveDeadLine={saveDeadLine}
-
+        totalPay={totalPay}
+        saveTotalPay={saveTotalPay}
+        monthlyPay={monthlyPay}
+        saveMonthlyPay={saveMonthlyPay}
       />
     </Fragment>
   );
