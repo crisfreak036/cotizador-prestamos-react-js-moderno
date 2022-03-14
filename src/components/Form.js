@@ -1,7 +1,11 @@
 import React, { useState, Fragment } from 'react';
+import LoanInfo from './LoanInfo';
+import Message from './Message';
 import { calculateFee } from '../helper';
 
-const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
+const Form = ( props ) => {
+
+    const {loan, saveLoad, deadLineValue, saveDeadLine, totalPay, saveTotalPay, monthlyPay, saveMonthlyPay} = props;
 
     const [errorState, saveErrorState ] = useState(false);
 
@@ -26,16 +30,23 @@ const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
 
         // Calculo de la cuota
         const [interest, monthlyFee] = calculateFee( loan, deadLineValue );
-        console.log( ` La Cantidad Solicitada es: ${loan}` );
-        console.log( ` A pagar en: ${deadLineValue} Meses` );
-        console.log( ` Su pago mensual es de: ${monthlyFee}` );
-        console.log( ` Total a Pagar: ${loan + interest}` );
-    
-        // Limpiar los inputs
+        saveTotalPay(( loan + interest ));
+        saveMonthlyPay(monthlyFee);
     }
 
-    // console.log(`Cantidad: ${loan}`);
-    // console.log(`Plazo para Pagar: ${deadLineValue}`)
+    // Carga condicional de componentes
+    let variableComponent;
+
+    if(totalPay === 0) {
+        variableComponent = <Message/>;
+    } else {
+        variableComponent = <LoanInfo 
+                                loan={loan}
+                                deadLineValue={deadLineValue}
+                                monthlyPay={monthlyPay}
+                                totalPay={totalPay}
+                            />
+    }
 
     return (
         <Fragment>
@@ -81,7 +92,8 @@ const Form = ({loan, saveLoad, deadLineValue, saveDeadLine}) => {
                         </div>
                     </div>
                 </form>
-            { (errorState) ? <p className="error">Todos los campos son obligatorios</p>: null } 
+                { variableComponent } 
+                { (errorState) ? <p className="error">Todos los campos son obligatorios</p>: null }
             </div>
 
         </Fragment>
