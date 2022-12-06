@@ -1,4 +1,4 @@
-# Cotizador de Prestamos
+# Cotizador de Prestamos (Actualizado 06/12/2022)
 
 ## ¿Qué puedes encontrar acá?
 En este repositorio se encuentra el proyecto introductorio de React "Cotizador de Prestamos" del curso de [JavaScript Moderno del instructor Juan De la torre](https://www.udemy.com/course/javascript-moderno-guia-definitiva-construye-10-proyectos/).
@@ -13,5 +13,5 @@ Los distintos archivos del proyecto contienen tanto código y lógica propia com
 
 Existen dos opciones:
 
-1. Clonar el repositorio o descargar el contenido del repositorio para correr el proyecto de manera local. Se puede encontrar más información en el archivo [create-react-app.md](./create-react-app-readme.md)
+1. Clonar el repositorio o descargar el contenido del repositorio para correr el proyecto de manera local.
 2. Puede ingresar al siguiente enlace [Cotizador de Prestamos](https://hardcore-curran-5ad595.netlify.app/)
