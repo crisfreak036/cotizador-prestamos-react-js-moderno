@@ -1,6 +1,9 @@
 import { useState } from 'react'
+
 import Header from './components/Header'
 import Button from './components/Button'
+
+import { formatearDinero } from './helpers/index.js'
 
 function App() {
 
@@ -60,7 +63,7 @@ function App() {
       <p
         className='text-center my-10 text-5xl font-extrabold text-indigo-600'
       >
-        {cantidad}
+        {formatearDinero(cantidad)}
       </p>
 
     </div>
